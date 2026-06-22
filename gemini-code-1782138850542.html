@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Tiếng Anh Tương Tác</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8854C0;
+            --secondary: #FDCB6E;
+            --accent: #00C9A7;
+            --correct: #00D26A;
+            --wrong: #FF4757;
+            --text: #2D3436;
+            --bg-card: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #8854C0, #FDCB6E, #00C9A7, #E8505B);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            padding: 20px 10px;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Họa tiết lơ lửng SVG */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm1-61c3.16 0 5.72-2.56 5.72-5.72 0-3.16-2.56-5.72-5.72-5.72-3.16 0-5.72 2.56-5.72 5.72 0 3.16 2.56 5.72 5.72 5.72zm44 3c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm-11-9c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm-20 3c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm15-17c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'/%3E%3C/g%3E%3C/svg%3E");
+            animation: floatingPattern 30s linear infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatingPattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 500px 1000px; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            border-radius: 15px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        header h5 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .alert-box {
+            background: #FFF3CD;
+            border: 3px dashed #FFC107;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.05);
+        }
+
+        .exercise-title {
+            background: var(--text);
+            color: #FFF;
+            padding: 12px 20px;
+            border-radius: 25px;
+            margin: 30px 0 15px 0;
+            display: inline-block;
+            box-shadow: 0 6px 0 rgba(0,0,0,0.1);
+            font-weight: 900;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 12px 0 rgba(0, 0, 0, 0.1);
+            border: 3px solid #E0E0E0;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid { grid-template-columns: 1fr; }
+        }
+
+        .btn-opt {
+            background: #FFF;
+            border: 3px solid #E0E0E0;
+            border-bottom: 8px solid #E0E0E0;
+            border-radius: 20px;
+            padding: 15px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.1s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-opt:hover:not(.disabled) {
+            transform: scale(1.02);
+            background: #F7F9FA;
+        }
+
+        .btn-opt:active:not(.disabled) {
+            transform: translateY(4px);
+            border-bottom-width: 4px;
+        }
+
+        .btn-opt.correct {
+            background: #E8FDF0 !important;
+            border-color: var(--correct) !important;
+            border-bottom-color: #00A654 !important;
+            color: #006633 !important;
+        }
+
+        .btn-opt.wrong {
+            background: #FFEBEB !important;
+            border-color: var(--wrong) !important;
+            border-bottom-color: #D63031 !important;
+            color: #99222A !important;
+        }
+
+        .disabled {
+            pointer-events: none;
+        }
+
+        /* Khung hiển thị popup điền từ */
+        .gap-fill {
+            display: inline-block;
+            min-width: 120px;
+            border-bottom: 4px dashed var(--primary);
+            text-align: center;
+            color: var(--primary);
+            font-weight: 900;
+            cursor: pointer;
+            padding: 0 10px;
+            background: #F3EEFA;
+            border-radius: 8px;
+        }
+
+        .gap-fill.answered-correct {
+            border-bottom-color: var(--correct);
+            color: #00A654;
+            background: #E8FDF0;
+        }
+
+        .gap-fill.answered-wrong {
+            border-bottom-color: var(--wrong);
+            color: #D63031;
+            background: #FFEBEB;
+        }
+
+        /* Mô phỏng bảng hiệu AI Sale và Điện thoại bài 29,30 */
+        .ai-sign-board {
+            background: #FF7675;
+            color: white;
+            border: 6px solid #D63031;
+            padding: 15px;
+            text-align: center;
+            font-weight: 900;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            margin: 10px auto;
+            max-width: 250px;
+            box-shadow: 0 8px 0 #B33939;
+            text-transform: uppercase;
+        }
+
+        .ai-phone {
+            background: #2D3436;
+            border-radius: 30px;
+            padding: 30px 15px 15px 15px;
+            width: 260px;
+            margin: 10px auto;
+            border: 4px solid #636E72;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.2);
+        }
+        .ai-phone-screen {
+            background: #74B9FF;
+            border-radius: 15px;
+            padding: 15px;
+            min-height: 120px;
+            color: #2D3436;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* Khung giải thích siêu chi tiết */
+        .explanation-box {
+            margin-top: 20px;
+            background: #F1F2F6;
+            border-left: 8px solid var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            display: none;
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        .explanation-box h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .explanation-box p {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .shake {
+            animation: shakeAnim 0.4s ease-in-out;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        /* Nút nộp bài cuối */
+        .submit-area {
+            text-align: center;
+            margin: 40px 0 60px;
+        }
+
+        .btn-submit {
+            background: #FF6B6B;
+            border: none;
+            border-bottom: 8px solid #EE5253;
+            color: white;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: all 0.1s;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.05);
+            background: #FF7676;
+        }
+
+        .btn-submit:active {
+            transform: translateY(4px);
+            border-bottom-width: 4px;
+        }
+
+        /* Modal Popup Tổng Kết Điểm */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1; pointer-events: auto;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 0 rgba(0,0,0,0.2);
+            border: 4px solid var(--primary);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: #FFF;
+            font-size: 2.5rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 6px solid #FFF;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+        }
+
+        .feedback-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-close-modal {
+            background: var(--accent);
+            border: none;
+            border-bottom: 6px solid #00A88F;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+
+        /* Pháo hoa Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Style cho bài Matching kéo thả/bấm */
+        .matching-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .match-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F8F9FA;
+            padding: 12px;
+            border-radius: 15px;
+            border: 2px dashed #DDD;
+        }
+        .match-img-label {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: #E8F4F8;
+            padding: 8px 15px;
+            border-radius: 10px;
+        }
+        .match-select {
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            border: 3px solid #DDD;
+            outline: none;
+            cursor: pointer;
+        }
+        .match-select.correct {
+            border-color: var(--correct);
+            background: #E8FDF0;
+        }
+        .match-select.wrong {
+            border-color: var(--wrong);
+            background: #FFEBEB;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container">
+        <header>
+            <h5>Giáo viên tạo: Ms Lê Hằng English</h5>
+        </header>
+
+        <div class="alert-box">
+            ⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️<br>
+            Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.<br>
+            Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!<br>
+            <span style="color: var(--wrong);">* Kéo tới đâu, làm tới đó! *</span>
+        </div>
+
+        <form id="quiz-form" onsubmit="event.preventDefault();">
+            
+            <!-- EXERCISE 3 -->
+            <div class="exercise-title">Exercise 3: Choose the odd one out in each group.</div>
+            
+            <!-- Q1 -->
+            <div class="card" id="q-ex3-1">
+                <div class="question-text">1. Chọn từ khác loại:</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-1')">A. plough</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-1')">B. cultivate</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-1')">C. harvest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-1')">D. summer</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. plough (v): cày ruộng</p>
+                    <p>B. cultivate (v): trồng trọt, canh tác</p>
+                    <p>C. harvest (v): thu hoạch</p>
+                    <p>D. summer (n): mùa hè</p>
+                    <p><strong>2. Tại sao chọn D?</strong> A, B, C đều là các động từ chỉ các hoạt động làm nông nghiệp, ruộng vườn. Riêng D là một danh từ chỉ một mùa trong năm.</p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="card" id="q-ex3-2">
+                <div class="question-text">2. Chọn từ khác loại:</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex3-2')">A. cow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex3-2')">B. buffalo</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex3-2')">C. hen</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex3-2')">D. pig</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. cow (n): con bò</p>
+                    <p>B. buffalo (n): con trâu</p>
+                    <p>C. hen (n): con gà mái (gia cầm)</p>
+                    <p>D. pig (n): con lợn/heo</p>
+                    <p><strong>2. Tại sao chọn C?</strong> A, B, D là động vật bốn chân thuộc nhóm gia súc lớn/vừa. C là gà mái thuộc nhóm gia cầm (động vật 2 chân, có lông vũ).</p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="card" id="q-ex3-3">
+                <div class="question-text">3. Chọn từ khác loại:</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-3')">A. train</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-3')">B. bus</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-3')">C. car</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex3-3')">D. harvester</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. train (n): tàu hỏa</p>
+                    <p>B. bus (n): xe buýt</p>
+                    <p>C. car (n): xe ô tô con</p>
+                    <p>D. harvester (n): máy gặt, máy thu hoạch nông sản</p>
+                    <p><strong>2. Tại sao chọn D?</strong> A, B, C đều là các phương tiện giao thông thông dụng dùng để chở người di chuyển công cộng hoặc cá nhân. D là máy móc chuyên dụng phục vụ nông nghiệp.</p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="card" id="q-ex3-4">
+                <div class="question-text">4. Chọn từ khác loại:</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex3-4')">A. peaceful</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex3-4')">B. paddy field</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex3-4')">C. orchard</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex3-4')">D. pond</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. peaceful (adj): yên bình, thanh bình</p>
+                    <p>B. paddy field (n): cánh đồng lúa</p>
+                    <p>C. orchard (n): vườn cây ăn quả</p>
+                    <p>D. pond (n): cái ao</p>
+                    <p><strong>2. Tại sao chọn A?</strong> B, C, D đều là các danh từ chỉ địa điểm, cảnh vật ở làng quê Việt Nam. Còn A là tính từ miêu tả tính chất.</p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="card" id="q-ex3-5">
+                <div class="question-text">5. Chọn từ khác loại:</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex3-5')">A. milk cows</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex3-5')">B. picturesque</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex3-5')">C. dry rice</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex3-5')">D. feed pigs</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. milk cows (v.phr): vắt sữa bò</p>
+                    <p>B. picturesque (adj): đẹp như tranh vẽ</p>
+                    <p>C. dry rice (v.phr): phơi thóc/lúa</p>
+                    <p>D. feed pigs (v.phr): cho lợn ăn</p>
+                    <p><strong>2. Tại sao chọn B?</strong> A, C, D đều là cụm động từ chỉ các hoạt động thường ngày của người nông dân. B là một tính từ miêu tả phong cảnh đẹp.</p>
+                </div>
+            </div>
+
+
+            <!-- EXERCISE 4 -->
+            <div class="exercise-title">Exercise 4: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.</div>
+
+            <!-- Q1 -->
+            <div class="card" id="q-ex4-1">
+                <div class="question-text">1. The farmers in this village are _________ and hospitable.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-1')">A. slowly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-1')">B. hard-working</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-1')">C. hardly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-1')">D. badly</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích từ vựng 4 đáp án:</strong></p>
+                    <p>A. slowly (adv): chậm chạp</p>
+                    <p>B. hard-working (adj): chăm chỉ</p>
+                    <p>C. hardly (adv): hầu như không</p>
+                    <p>D. badly (adv): tồi tệ</p>
+                    <p><strong>2. Dịch nghĩa toàn câu:</strong> "Những người nông dân ở ngôi làng này thì chăm chỉ và hiếu khách."</p>
+                    <p><strong>3. Tại sao chọn B?</strong> Vị trí sau động từ tobe "are" và nối nối với một tính từ khác bằng từ "and" ("and hospitable") cần một tính từ bổ nghĩa cho chủ từ chỉ người "The farmers". Loại A, C, D vì chúng là trạng từ.</p>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="card" id="q-ex4-2">
+                <div class="question-text">2. Lucy dances _________ than Mary does.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-2')">A. beautiful</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-2')">B. beautifully</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-2')">C. more beautifully</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-2')">D. more beautiful</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Dịch nghĩa câu:</strong> "Lucy khiêu vũ/nhảy đẹp hơn Mary nhảy."</p>
+                    <p><strong>2. Tại sao chọn C?</strong> Động từ thường trong câu là "dances" nên cần trạng từ "beautifully" để bổ nghĩa. Mặt khác, câu có cấu trúc so sánh hơn với từ "than", trạng từ "beautifully" là trạng từ dài nên cấu trúc so sánh hơn của nó là "more beautifully". Loại D vì "beautiful" là tính từ.</p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="card" id="q-ex4-3">
+                <div class="question-text">3. After an hour walking between the green paddy _______, we finally reached the village entrance.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-3')">A. places</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-3')">B. fields</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-3')">C. yards</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-3')">D. courts</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích cụm từ 4 đáp án:</strong></p>
+                    <p>A. places: nơi chốn</p>
+                    <p>B. fields: cánh đồng (paddy fields: cánh đồng lúa)</p>
+                    <p>C. yards: cái sân</p>
+                    <p>D. courts: sân bóng/ tòa án</p>
+                    <p><strong>2. Dịch câu:</strong> "Sau một tiếng đi bộ giữa những cánh đồng lúa xanh ngắt, cuối cùng chúng tôi cũng đến được lối vào làng."</p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="card" id="q-ex4-4">
+                <div class="question-text">4. We can enjoy the fresh air and beauty in the_______.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-4')">A. city</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-4')">B. factory</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-4')">C. countryside</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-4')">D. gas station</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>1. Phân tích nghĩa từ:</strong></p>
+                    <p>A. city: thành phố; B. factory: nhà máy; C. countryside: miền quê; D. gas station: trạm xăng</p>
+                    <p><strong>2. Giải thích:</strong> Dựa vào cụm "enjoy fresh air" (tận hưởng không khí trong lành), nơi phù hợp nhất chính là vùng nông thôn (countryside).</p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="card" id="q-ex4-5">
+                <div class="question-text">5. The small bamboo forest _______ the entrance to the village makes it picturesque.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-5')">A. at</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-5')">B. in</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-5')">C. on</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-5')">D. to</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Ta dùng giới từ "at" để chỉ một địa điểm cụ thể chính xác "at the entrance to the village" (tại lối vào làng).</p>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="card" id="q-ex4-6">
+                <div class="question-text">6. Alice met Aly’s family at his house _______ the early morning.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-6')">A. on</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-6')">B. at</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-6')">C. in</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-6')">D. about</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cụm từ cố định chỉ các buổi trong ngày đi với giới từ "in": "in the morning / in the early morning" (vào buổi sáng sớm).</p>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="card" id="q-ex4-7">
+                <div class="question-text">7. I am _______ on visiting my grandparents' on the weekend.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-7')">A. fond</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-7')">B. keen</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-7')">C. interested</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-7')">D. bored</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Cấu trúc giới từ đi kèm:</strong></p>
+                    <p>- keen + on: đam mê, thích làm gì</p>
+                    <p>- fond + of: thích</p>
+                    <p>- interested + in: quan tâm, thích</p>
+                    <p>- bored + with: chán nản</p>
+                    <p>Do câu có từ "on" nên đáp án chính xác bắt buộc là B. keen.</p>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="card" id="q-ex4-8">
+                <div class="question-text">8. She walked _________ than other people on the street because she got up late.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-8')">A. quickly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-8')">B. quick</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-8')">C. quicker</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-8')">D. more quickly</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "walked" là động từ thường nên ta cần một trạng từ là "quickly". Khi so sánh hơn với "than", trạng từ dài hai âm tiết "quickly" biến đổi thành "more quickly".</p>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="card" id="q-ex4-9">
+                <div class="question-text">9. His sister plays badminton _________ than I do.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-9')">A. best</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-9')">B. better</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-9')">C. good</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-9')">D. well</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Câu có cấu trúc so sánh hơn nhờ từ "than". Trạng từ bổ nghĩa cho hành động "plays" là "well", dạng so sánh hơn bất quy tắc của "well" chính là "better". Do đó ta chọn B.</p>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="card" id="q-ex4-10">
+                <div class="question-text">10. Russia is a _______ country with a lot of natural resources.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-10')">A. vast</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-10')">B. envious</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-10')">C. cultivable</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-10')">D. far</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. vast: rộng lớn, bao la; B. envious: ghen tị; C. cultivable: có thể canh tác; D. far: xa xôi</p>
+                    <p><strong>Giải thích:</strong> Nga là đất nước có diện tích rộng lớn nhất thế giới nên tính từ phù hợp nhất là "vast".</p>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="card" id="q-ex4-11">
+                <div class="question-text">11. Farmers often leave the rice in the sun to _______.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-11')">A. damp</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-11')">B. wet</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-11')">C. warm</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-11')">D. dry</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. damp: làm ẩm; B. wet: làm ướt; C. warm: làm ấm; D. dry: làm khô, phơi khô</p>
+                    <p><strong>Giải thích:</strong> Người nông dân để lúa/thóc dưới ánh mặt trời mục đích để phơi khô (dry).</p>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="card" id="q-ex4-12">
+                <div class="question-text">12. They _______ the buffalo-drawn cart with hay.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-12')">A. built</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-12')">B. hugged</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-12')">C. loaded</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-12')">D. milked</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. built: xây dựng; B. hugged: ôm; C. loaded: chất lên, chở; D. milked: vắt sữa</p>
+                    <p><strong>Giải thích:</strong> Cấu trúc "load something with something" (chất/chở cái gì với cái gì). "They loaded the buffalo-drawn cart with hay" có nghĩa là Họ chất đầy cỏ khô lên xe trâu kéo.</p>
+                </div>
+            </div>
+
+            <!-- Q13 -->
+            <div class="card" id="q-ex4-13">
+                <div class="question-text">13. Farmers always need extra help with the _______.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-13')">A. accident</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-13')">B. harvest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-13')">C. explosion</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-13')">D. cattle</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. accident: tai nạn; B. harvest: vụ thu hoạch; C. explosion: vụ nổ; D. cattle: gia súc</p>
+                    <p><strong>Dịch nghĩa:</strong> Người nông dân luôn cần thêm người giúp đỡ vào mùa thu hoạch (harvest) vì lúc đó rất bận rộn.</p>
+                </div>
+            </div>
+
+            <!-- Q14 -->
+            <div class="card" id="q-ex4-14">
+                <div class="question-text">14. My uncle raises a herd of _______ on his farm.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-14')">A. cattle</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-14')">B. fruit</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-14')">C. countryside</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-14')">D. village</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Ta có cụm danh từ "a herd of cattle" có nghĩa là một đàn gia súc (trâu, bò...). Các đáp án khác trái nghĩa ngữ cảnh hoàn toàn.</p>
+                </div>
+            </div>
+
+            <!-- Q15 -->
+            <div class="card" id="q-ex4-15">
+                <div class="question-text">15. You should explain _________ for everyone.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-15')">A. clearly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-15')">B. clear</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-15')">C. clearer</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-15')">D. clearest</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ "explain" (giải thích) là động từ thường nên cần một trạng từ thường đi kèm ở mức độ cơ bản để bổ nghĩa, ta chọn trạng từ "clearly" (một cách rõ ràng).</p>
+                </div>
+            </div>
+
+            <!-- Q16 -->
+            <div class="card" id="q-ex4-16">
+                <div class="question-text">16. Life in the village is _________.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-16')">A. peace</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-16')">B. peacefully</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-16')">C. peaceful</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-16')">D. more peacefully</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "is" là động từ tobe, theo sau tobe dùng để miêu tả bản chất ta cần một tính từ. "peaceful" là tính từ (yên bình). Loại B và D vì là trạng từ, loại A vì là danh từ.</p>
+                </div>
+            </div>
+
+            <!-- Q17 -->
+            <div class="card" id="q-ex4-17">
+                <div class="question-text">17. A boat is _______ than a plane.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-17')">A. slower</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-17')">B. slowest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-17')">C. more slow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-17')">D. more slower</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "slow" là tính từ ngắn. Khi ở dạng so sánh hơn đi kèm từ "than", ta chỉ cần thêm đuôi "-er" thành "slower".</p>
+                </div>
+            </div>
+
+            <!-- Q18 -->
+            <div class="card" id="q-ex4-18">
+                <div class="question-text">18. My sister dances _______ than me.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-18')">A. gooder</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-18')">B. weller</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-18')">C. better</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-18')">D. more good</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Bổ nghĩa động từ thường "dances" trong phép so sánh hơn chính là "better" (biến đổi bất quy tắc của well).</p>
+                </div>
+            </div>
+
+            <!-- Q19 -->
+            <div class="card" id="q-ex4-19">
+                <div class="question-text">19. This road is _______ than that road.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-19')">A. narrower</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-19')">B. narrow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-19')">C. the most narrow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-19')">D. more narrower</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "narrow" là tính từ có tận cùng là "-ow", do đó được chia theo quy tắc của tính từ ngắn khi so sánh hơn: thêm đuôi "-er" tạo thành "narrower".</p>
+                </div>
+            </div>
+
+            <!-- Q20 -->
+            <div class="card" id="q-ex4-20">
+                <div class="question-text">20. He drives _______ his brother.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-20')">A. more careful than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-20')">B. more carefully</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-20')">C. more carefully than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-20')">D. as careful as</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Vì động từ chính là "drives" nên bắt buộc dùng trạng từ "carefully". Để so sánh với đối tượng phía sau "his brother" ta phải dùng đầy đủ cấu trúc: "more carefully than".</p>
+                </div>
+            </div>
+
+            <!-- Q21 -->
+            <div class="card" id="q-ex4-21">
+                <div class="question-text">21. Things in the city are _______ than in the country.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-21')">A. moderner</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-21')">B. more moderner</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-21')">C. modern</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-21')">D. more modern</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "modern" là tính từ dài gồm 2 âm tiết không có đuôi đặc biệt, nên khi so sánh hơn ta thêm "more" đằng trước: "more modern than".</p>
+                </div>
+            </div>
+
+            <!-- Q22 -->
+            <div class="card" id="q-ex4-22">
+                <div class="question-text">22. The farmers are busy _________ their crops.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-22')">A. to harvest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-22')">B. harvest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-22')">C. harvesting</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-22')">D. harvested</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Cấu trúc ngữ pháp:</strong> Cấu trúc cố định "be busy + V-ing" có nghĩa là bận rộn làm việc gì đó. Nên ta chọn C. harvesting.</p>
+                </div>
+            </div>
+
+            <!-- Q23 -->
+            <div class="card" id="q-ex4-23">
+                <div class="question-text">23. I can hear what you are saying. Can you speak a bit . _________ ?</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-23')">A. slower</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-23')">B. more slowly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-23')">C. slow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-23')">D. slowest</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ "speak" cần bổ nghĩa bằng trạng từ "slowly". Khi muốn nhờ ai đó nói chậm hơn một chút, ta dùng dạng so sánh hơn là "more slowly".</p>
+                </div>
+            </div>
+
+            <!-- Q24 -->
+            <div class="card" id="q-ex4-24">
+                <div class="question-text">24. Every afternoon they went to the park to ______ the ducks with their favorite food.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-24')">A. raise</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-24')">B. catch</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-24')">C. feed</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-24')">D. milk</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. raise: nuôi nấng; B. catch: bắt; C. feed: cho ăn; D. milk: vắt sữa</p>
+                    <p><strong>Giải thích:</strong> Phía sau có cụm "with their favorite food" (bằng thức ăn yêu thích của chúng) thì động từ phù hợp nhất là "feed" (cho vịt ăn).</p>
+                </div>
+            </div>
+
+            <!-- Q25 -->
+            <div class="card" id="q-ex4-25">
+                <div class="question-text">25. It's ______ when fruits are all ripe and local people ______ them in the orchard.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-25')">A. harvest time/ pick</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-25')">B. harvest/ choose</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-25')">C. life/ decide</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-25')">D. harvest time/ gather</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "harvest time" nghĩa là mùa gặt/mùa thu hoạch. "pick fruits" nghĩa là hái quả chín trong vườn quả (orchard). Do đó cặp từ ở phương án A chuẩn xác nhất.</p>
+                </div>
+            </div>
+
+            <!-- Q26 -->
+            <div class="card" id="q-ex4-26">
+                <div class="question-text">26. In those days when I was at high school, I often helped my parents to ______ crops at harvest time.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-26')">A. save</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-26')">B. gather</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-26')">C. collect</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-26')">D. all are correct</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cụm từ "gather crops" có nghĩa là thu hoạch, gặt hái nông sản lúa ngô khoai sắn khi đến vụ.</p>
+                </div>
+            </div>
+
+            <!-- Q27 -->
+            <div class="card" id="q-ex4-27">
+                <div class="question-text">27. When I was a boy, my granddad used to ______ fish from the pond behind his house.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-27')">A. hold</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-27')">B. pick</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-27')">C. catch</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-27')">D. feed</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Ta có cụm hành động "catch fish" nghĩa là câu cá, đánh bắt cá từ dưới ao lên.</p>
+                </div>
+            </div>
+
+            <!-- Q28 -->
+            <div class="card" id="q-ex4-28">
+                <div class="question-text">28. After cutting rice from the field, farmers ______ it in the sun for 2 or 3 days.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-28')">A. drain</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-28')">B. bake</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-28')">C. dry</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-28')">D. plough</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "dry it in the sun" có nghĩa là phơi khô hạt thóc lúa dưới ánh mặt trời trong khoảng vài ngày.</p>
+                </div>
+            </div>
+
+            <!-- Q29 (Biển báo AI tự vẽ bằng CSS) -->
+            <div class="card" id="q-ex4-29">
+                <div class="question-text">29. Duong Lam is one of __________ ancient villages in Ha Noi.</div>
+                <div style="text-align:center; padding:10px;">
+                    <div class="ai-sign-board">SALE 50%</div>
+                </div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-29')">A. the most</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-29')">B. more</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-29')">C. most</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-29')">D. the more</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Cấu trúc ngữ pháp:</strong> Đây là cấu trúc so sánh nhất của tính từ dài "ancient". Công thức so sánh nhất là "one of + the most + adj dài", mang nghĩa là một trong những ngôi làng cổ kính nhất.</p>
+                </div>
+            </div>
+
+            <!-- Q30 (Tin nhắn điện thoại AI tự vẽ bằng CSS) -->
+            <div class="card" id="q-ex4-30">
+                <div class="question-text">30. Farmers in this village use a _________ to harvest their rice.</div>
+                <div style="text-align:center; padding:10px;">
+                    <div class="ai-phone">
+                        <div class="ai-phone-screen">📩 Tin nhắn:<br>Cánh đồng đang gặt bằng máy lớn lắm con ơi!</div>
+                    </div>
+                </div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-30')">A. cow</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-30')">B. truck</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-30')">C. buffalo</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-30')">D. combine harvester</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Để thu hoạch lúa nhanh chóng, ngày nay người nông dân sử dụng máy gặt đập liên hợp - "combine harvester".</p>
+                </div>
+            </div>
+
+            <!-- Q31 -->
+            <div class="card" id="q-ex4-31">
+                <div class="question-text">31. It is _______ in the city than it is in the country.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-31')">A. noisily</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-31') text">B. more noisier</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-31')">C. noisier</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-31')">D. noisy</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "noisy" là tính từ có tận cùng bằng đuôi "-y", khi chuyển sang so sánh hơn ta đổi "-y" thành "-ier" tạo thành "noisier".</p>
+                </div>
+            </div>
+
+            <!-- Q32 -->
+            <div class="card" id="q-ex4-32">
+                <div class="question-text">32. The English test was _______ than I thought it would be.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-32')">A. the easier</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-32')">B. more easy</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-32')">C. easiest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-32')">D. easier</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Giống câu trên, tính từ "easy" tận cùng là "-y" nên dạng so sánh hơn đi kèm "than" phải là "easier".</p>
+                </div>
+            </div>
+
+            <!-- Q33 -->
+            <div class="card" id="q-ex4-33">
+                <div class="question-text">33. English is thought to be _______ than Math.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-33')">A. harder</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-33')">B. the more hard</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-33')">C. hardest</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-33')">D. the hardest</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "hard" là một tính từ ngắn, dạng so sánh hơn của nó là thêm đuôi "-er" thành "harder".</p>
+                </div>
+            </div>
+
+            <!-- Q34 -->
+            <div class="card" id="q-ex4-34">
+                <div class="question-text">34. Her office is _______ away than mine.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-34')">A. father</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-34')">B. more far</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-34')">C. farther</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-34')">D. farer</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Tính từ "far" có dạng so sánh hơn đặc biệt, biến đổi bất quy tắc thành "farther" hoặc "further". Trong trường hợp khoảng cách địa lý ta dùng "farther".</p>
+                </div>
+            </div>
+
+            <!-- Q35 -->
+            <div class="card" id="q-ex4-35">
+                <div class="question-text">35. The streets in cities are _______ than those in the countryside.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-35')">A. crowded</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-35')">B. more crowded</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-35')">C. crowdeder</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-35')">D. less crowded</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "crowded" là tính từ dài gồm 2 âm tiết nên dạng so sánh hơn là thêm "more" ở trước tạo thành "more crowded".</p>
+                </div>
+            </div>
+
+            <!-- Q36 -->
+            <div class="card" id="q-ex4-36">
+                <div class="question-text">36. People use a truck to _________ rice to home.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-36')">A. load</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-36')">B. unload</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-36')">C. unloading</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-36')">D. loading</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cấu trúc động từ nguyên mẫu có to chỉ mục đích "to + V-infinitive". "load rice to home" có nghĩa chở, vác lúa về nhà.</p>
+                </div>
+            </div>
+
+            <!-- Q37 -->
+            <div class="card" id="q-ex4-37">
+                <div class="question-text">37. Do you want to _________ cow on the farm?</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-37')">A. drink</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-37')">B. milk</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-37')">C. plough</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-37')">D. dry</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "milk" ngoài danh từ sữa còn đóng vai trò động từ hành động: vắt sữa. "milk cow" có nghĩa là vắt sữa bò.</p>
+                </div>
+            </div>
+
+            <!-- Q38 -->
+            <div class="card" id="q-ex4-38">
+                <div class="question-text">38. Farmers in Ly Nhon are ________ in the yard after they have harvested all the fields.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-38')">A. drying rice</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-38')">B. washing clothes</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-38')">C. dragon-snake</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-38')">D. milk cows</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Sau khi gặt lúa trên đồng ruộng xong ("harvested all the fields"), việc tiếp theo của người nông dân là mang phơi thóc/lúa trên sân ("drying rice in the yard").</p>
+                </div>
+            </div>
+
+            <!-- Q39 -->
+            <div class="card" id="q-ex4-39">
+                <div class="question-text">39. Can Gio is a suitable place to plant ________ suitable for saline soils.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-39')">A. cattle</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-39')">B. villagers</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-39')">C. orchards</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-39')">D. cows</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ "plant" nghĩa là trồng trọt, do đó từ đi sau phải liên quan đến thực vật. Ta chọn "orchards" (vườn cây ăn quả).</p>
+                </div>
+            </div>
+
+            <!-- Q40 -->
+            <div class="card" id="q-ex4-40">
+                <div class="question-text">40. At the weekend, my family and I went to the countryside to visit our grandparents. On the way, we encountered many houses with ________ architecture.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-40')">A. ancient</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-40')">B. disturbing</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-40')">C. vast</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-40')">D. envious</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p>A. ancient: cổ kính, lâu đời; B. disturbing: làm phiền; C. vast: bao la; D. envious: ghen tị</p>
+                    <p><strong>Giải thích:</strong> Ở làng quê nông thôn thường lưu giữ nhiều ngôi nhà có kiến trúc cổ kính (ancient architecture).</p>
+                </div>
+            </div>
+
+            <!-- Q41 -->
+            <div class="card" id="q-ex4-41">
+                <div class="question-text">41. The experience of ________ cows at Long Thanh dairy farm is a very memorable memory from my travels.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-41')">A. herding</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-41')">B. envying</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-41')">C. catching</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-41')">D. milking</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Tại trang trại sữa (dairy farm), trải nghiệm đặc trưng thú vị nhất chính là tự tay vắt sữa bò ("milking cows").</p>
+                </div>
+            </div>
+
+            <!-- Q42 -->
+            <div class="card" id="q-ex4-42">
+                <div class="question-text">42. We really enjoyed flying kites over the green rice ________ during our picnic last year.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-42')">A. facilities</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-42')">B. hays</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-42')">C. fields</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-42')">D. collections</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cụm danh từ ghép vô cùng quen thuộc "rice fields" mang nghĩa là những cánh đồng lúa xanh ngắt.</p>
+                </div>
+            </div>
+
+            <!-- Q43 -->
+            <div class="card" id="q-ex4-43">
+                <div class="question-text">43. This village is famous _________ picturesque landscape.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-43')">A. on</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-43')">B. at</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-43')">C. for</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-43')">D. about</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Cấu trúc tính từ:</strong> Cấu trúc tính từ đi kèm giới từ cố định: "be famous for something" có nghĩa là nổi tiếng vì cái gì đó.</p>
+                </div>
+            </div>
+
+            <!-- Q44 -->
+            <div class="card" id="q-ex4-44">
+                <div class="question-text">44. My grandmother loves _________ in the countryside.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-44')">A. live</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-44')">B. to live</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-44')">C. lived</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-44')">D. to living</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Ngữ pháp:</strong> Động từ chỉ sở thích "love" có thể đi kèm động từ dạng "To V" hoặc "V-ing". Ở đây phương án B thỏa mãn chính xác ngữ pháp "to live".</p>
+                </div>
+            </div>
+
+            <!-- Q45 -->
+            <div class="card" id="q-ex4-45">
+                <div class="question-text">45. How long will it take to ______ these bunches of rice onto the lorry?</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-45')">A. cut</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-45')">B. fill</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-45')">C. load</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-45')">D. unload</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Dựa vào giới từ "onto" đằng sau, ta dùng động từ "load... onto..." nghĩa là bốc vác xếp các bó lúa lên trên xe tải nặng.</p>
+                </div>
+            </div>
+
+            <!-- Q46 -->
+            <div class="card" id="q-ex4-46">
+                <div class="question-text">46. The ______ is so peaceful with boys ______ the buffaloes on the slopes of the hill.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'q-ex4-46')">A. village/ guiding</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'q-ex4-46')">B. countryside/ herding</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'q-ex4-46')">C. paddy field/ leading</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'q-ex4-46')">D. life/ catching</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cảnh miền quê vùng nông thôn ("countryside") thật yên bình với những cậu bé chăn trâu ("herding the buffaloes") thả trâu ăn cỏ ven sườn đồi.</p>
+                </div>
+            </div>
+
+            <!-- Q47 -->
+            <div class="card" id="q-ex4-47">
+                <div class="question-text">47. My grandmother was a peasant; she used to ______ rice from the buffalo-drawn cart.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-47')">A. carry</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-47')">B. load</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-47')">C. unload</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-47')">D. collect</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Dựa vào giới từ tách rời "from" (khỏi cái gì đó), hành động dỡ lúa xuống từ trên xe kéo trâu được gọi là "unload".</p>
+                </div>
+            </div>
+
+            <!-- Q48 -->
+            <div class="card" id="q-ex4-48">
+                <div class="question-text">48. After ______ the field, farmers grow some kinds of important ______ suitable for each season.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-48')">A. combining/ cattle</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-48')">B. collecting/ poultry</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-48')">C. ploughing/ crops</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'q-ex4-48')">D. cultivating/ harvest</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "After ploughing the field" (Sau khi cày ruộng xong), người nông dân gieo trồng các loại hoa màu vụ mùa ("crops") phù hợp thời tiết.</p>
+                </div>
+            </div>
+
+            <!-- Q49 -->
+            <div class="card" id="q-ex4-49">
+                <div class="question-text">49. I heard the clank of buckets as they went to ______ the cows.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-49')">A. herd</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-49')">B. keep</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-49')">C. feed</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-49')">D. milk</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Tiếng kêu lách cách leng keng của các xô chậu đựng sữa ("buckets") báo hiệu người ta đang đi vắt sữa bò ("milk the cows").</p>
+                </div>
+            </div>
+
+            <!-- Q50 -->
+            <div class="card" id="q-ex5-50">
+                <div class="question-text">50. There are a lot of bamboo trees _________ her house.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-50')">A. around</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-50')">B. at</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-50')">C. for</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-50')">D. on</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "around her house" có nghĩa là xung quanh ngôi nhà có rất nhiều rặng cây tre bao bọc xanh mát.</p>
+                </div>
+            </div>
+
+            <!-- Các câu trắc nghiệm từ câu 51 đến câu 65 làm tương tự -->
+            <!-- Q51 -->
+            <div class="card" id="q-ex4-51">
+                <div class="question-text">51. She couldn't get the first prize because she ran _________ than Mai.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-51')">A. slower</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-51')">B. slowly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-51')">C. more slowly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-51')">D. slowest</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ thường "ran" cần trạng từ "slowly". Khi so sánh hơn, ta đổi thành "more slowly".</p>
+                </div>
+            </div>
+
+            <!-- Q52 -->
+            <div class="card" id="q-ex4-52">
+                <div class="question-text">52. City drivers have to drive _______ than country ones.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-52')">A. more careful</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-52')">B. more careless</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-52')">C. more carefully</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-52')">D. more carelessly</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Tài xế thành phố phải lái xe một cách cẩn thận hơn ("more carefully") vì đường đông đúc.</p>
+                </div>
+            </div>
+
+            <!-- Q53 -->
+            <div class="card" id="q-ex4-53">
+                <div class="question-text">53. My house is _______ hers.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-53')">A. cheap than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-53')">B. cheaper</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-53')">C. more cheap than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-53')">D. cheaper than</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "cheap" là tính từ ngắn, dạng so sánh hơn đầy đủ đi với danh từ so sánh là "cheaper than".</p>
+                </div>
+            </div>
+
+            <!-- Q54 -->
+            <div class="card" id="q-ex4-54">
+                <div class="question-text">54. Tom is _______ than David.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-54')">A. handsome</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-54')">B. the more handsome</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-54')">C. more handsome</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C', 'ex4-54')">D. the most handsome</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "handsome" là tính từ dài, so sánh hơn cần thêm chữ "more handsome".</p>
+                </div>
+            </div>
+
+            <!-- Q55 -->
+            <div class="card" id="q-ex4-55">
+                <div class="question-text">55. He did the test _______ I did.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-55')">A. as bad as</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-55')">B. badder than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-55')">C. more badly than</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-55')">D. worse than</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Trạng từ "badly" có hình thái so sánh hơn đặc biệt, biến đổi bất quy tắc thành từ "worse than".</p>
+                </div>
+            </div>
+
+            <!-- Q56 -->
+            <div class="card" id="q-ex4-56">
+                <div class="question-text">56. My new sofa is _______ than the old one.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-56')">A. more comfortable</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-56')">B. comfortably</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-56')">C. more comfortabler</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-56')">D. comfortable</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "comfortable" là tính từ dài, so sánh hơn là "more comfortable".</p>
+                </div>
+            </div>
+
+            <!-- Q57 -->
+            <div class="card" id="q-ex4-57">
+                <div class="question-text">57. He walked _________ home after a long working day.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-57')">A. tire</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-57')">B. tiredness</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-57')">C. tired</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-57')">D. tiredly</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ thường "walked" cần đi kèm với một trạng từ để thể hiện cách thức đi lại: "tiredly" (một cách mệt mỏi).</p>
+                </div>
+            </div>
+
+            <!-- Q58 -->
+            <div class="card" id="q-ex4-58">
+                <div class="question-text">58. You can travel _________ in the city than in the countryside.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-58')">A. convenient</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-58')">B. conveniently</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-58')">C. more convenient</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-58')">D. more conveniently</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Hành động di chuyển "travel" cần trạng từ, so sánh hơn của trạng từ dài là "more conveniently".</p>
+                </div>
+            </div>
+
+            <!-- Q59 -->
+            <div class="card" id="q-ex4-59">
+                <div class="question-text">59. We are looking forward to a bumper _______.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-59')">A. lighthouse</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-59')">B. village</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-59')">C. countryside</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'D', 'ex4-59')">D. crop</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Ta có một cụm từ ghép cố định rất hay bắt gặp: "a bumper crop" có nghĩa là một vụ mùa bội thu.</p>
+                </div>
+            </div>
+
+            <!-- Q60 -->
+            <div class="card" id="q-ex4-60">
+                <div class="question-text">60. I used to go _______ buffaloes when I was small.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-60')">A. herding</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-60')">B. swimming</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-60')">C. hiking</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-60')">D. cooking</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Cụm từ "go herding buffaloes" dùng chỉ hành động đi dắt trâu, chăn trâu ăn cỏ ngày xưa của các bạn nhỏ.</p>
+                </div>
+            </div>
+
+            <!-- Q61 -->
+            <div class="card" id="q-ex4-61">
+                <div class="question-text">61. They _______ the boxes into the trucks.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-61')">A. harvested</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-61')">B. loaded</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-61')">C. caught</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-61')">D. observed</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "load something into..." nghĩa là bốc, xếp đống các thùng hàng lên trên xe tải di chuyển đi nơi khác.</p>
+                </div>
+            </div>
+
+            <!-- Q62 -->
+            <div class="card" id="q-ex4-62">
+                <div class="question-text">62. _______ is often the hardest but the most important time to people living in the countryside.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-62')">A. Tet holiday</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-62')">B. Harvest time</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-62')">C. Daylight</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-62')">D. Travelling time</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Mùa gặt, mùa thu hoạch nông sản ("Harvest time") chính là khoảng thời gian vất vả cực nhọc nhất nhưng lại có ý nghĩa quan trọng nhất với người làm nông.</p>
+                </div>
+            </div>
+
+            <!-- Q63 -->
+            <div class="card" id="q-ex4-63">
+                <div class="question-text">63. John invited Ann to join his family on _______ to his home village about 60 kilometers to the north of Ha Noi.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-63')">A. a two-day trip</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-63')">B. two- days trip</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-63')">C. a two- days trip</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'q-ex4-63')">D. a trip two days</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Khi số đếm và danh từ thời gian kết hợp lại bằng dấu gạch ngang để làm một tính từ ghép bổ nghĩa cho danh từ đứng sau, ta không thêm chữ s ở đơn vị thời gian: "a two-day trip" (chuyến đi kéo dài 2 ngày).</p>
+                </div>
+            </div>
+
+            <!-- Q64 -->
+            <div class="card" id="q-ex4-64">
+                <div class="question-text">64. Students in this school study _________ than students in that school.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-64')">A. more hardly</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-64')">B. harder</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-64')">C. hard</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B', 'ex4-64')">D. hardly</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> "hard" vừa là tính từ vừa là trạng từ mang nghĩa chăm chỉ, khi làm trạng từ so sánh hơn nó biến thành "harder". "hardly" mang nghĩa là hầu như không, không phù hợp.</p>
+                </div>
+            </div>
+
+            <!-- Q65 -->
+            <div class="card" id="q-ex4-65">
+                <div class="question-text">65. In my family, my father cooks _________ than my mother does.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-65')">A. better</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-65')">B. best</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-65')">C. well</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A', 'ex4-65')">D. good</button>
+                </div>
+                <div class="explanation-box">
+                    <h4>Phần giải thích chi tiết:</h4>
+                    <p><strong>Giải thích:</strong> Động từ nấu ăn "cooks" cần trạng từ bổ nghĩa, dạng so sánh hơn của trạng từ "well" là "better".</p>
+                </div>
+            </div>
+
+
+            <!-- EXERCISE 5: GAP FILL CLICK POPUP -->
+            <div class="exercise-title">Exercise 5: Fill in the blanks with the comparative form of the adverbs.</div>
+            <div class="card">
+                <p style="font-size: 1.1rem; line-height: 2;">
+                    1. My aunt sings <span class="gap-fill" onclick="openGapPopup(this, ['better','well','good','more well'], 'better')">___ bấm vào từ ___</span> (well) than my uncle does.<br>
+                    2. She cooks <span class="gap-fill" onclick="openGapPopup(this, ['worse','badly','more badly','badder'], 'worse')">___ bấm vào từ ___</span> (badly) than her sister. I couldn't eat what she cooked.<br>
+                    3. No one in the team runs <span class="gap-fill" onclick="openGapPopup(this, ['faster','more fast','fastly','fastest'], 'faster')">___ bấm vào từ ___</span> (fast) than Linh.<br>
+                    4. He drives <span class="gap-fill" onclick="openGapPopup(this, ['more carefully','carefully','carefuller','most carefully'], 'more carefully')">___ bấm vào từ ___</span> (carefully) than his father.<br>
+                    5. Yesterday my teacher came to class <span class="gap-fill" onclick="openGapPopup(this, ['earlier','more early','earlyer','earliest'], 'earlier')">___ bấm vào từ ___</span> (early) than usual.<br>
+                    6. I speak English <span class="gap-fill" onclick="openGapPopup(this, ['more fluently','fluently','fluentlier','most fluently'], 'more fluently')">___ bấm vào từ ___</span> (fluently) than my sister.<br>
+                    7. She coloured the picture <span class="gap-fill" onclick="openGapPopup(this, ['more perfectly','perfectly','perfectlier','most perfectly'], 'more perfectly')">___ bấm vào từ ___</span> (perfectly) than I expected.<br>
+                    8. The little child talked to his grandmother <span class="gap-fill" onclick="openGapPopup(this, ['more politely','politely','politlier','most politely'], 'more politely')">___ bấm vào từ ___</span> (politely) than other children.<br>
+                    9. She painted the picture <span class="gap-fill" onclick="openGapPopup(this, ['more beautifully','beautifully','beautifuller','most beautifully'], 'more beautifully')">___ bấm vào từ ___</span> (beautifully) than I did.<br>
+                    10. Nam runs <span class="gap-fill" onclick="openGapPopup(this, ['more quickly','quickly','quicklier','fastest'], 'more quickly')">___ bấm vào từ ___</span> (quickly) than other members of the team.
+                </p>
+            </div>
+
+
+            <!-- EXERCISE 6: MATCHING -->
+            <div class="exercise-title">Exercise 6: Match the pictures with the correct words or phrases.</div>
+            <div class="card">
+                <div class="matching-container">
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 1 (D)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'D')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 2 (C)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'C')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 3 (A)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'A')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 4 (E)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'E')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 5 (B)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'B')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 6 (G)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'G')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                    <div class="match-row">
+                        <span class="match-img-label">Hình ảnh 7 (F)</span>
+                        <select class="match-select" onchange="checkMatch(this, 'F')">
+                            <option value="">-- Chọn cụm từ phù hợp --</option>
+                            <option value="A">A. drying rice</option>
+                            <option value="B">B. picking fruits</option>
+                            <option value="C">C. buffalo</option>
+                            <option value="D">D. combine harvester</option>
+                            <option value="E">E. paddy fields</option>
+                            <option value="F">F. small village</option>
+                            <option value="G">G. milking cow</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXERCISE 7 -->
+            <div class="exercise-title">Exercise 7: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s).</div>
+            <div class="card">
+                <div class="question-text">1. Nomadic people live in a <u>ger</u>. It keeps them cool in summer and warm in winter.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">A. house</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">B. circular tent</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">C. cave</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">D. yatch</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="question-text">2. The nomads move two or three times a year to look for new <u>pastures</u>.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">A. food</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">B. places</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">C. grasslands</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">D. lifestyles</button>
+                </div>
+            </div>
+
+            <!-- EXERCISE 8 -->
+            <div class="exercise-title">Exercise 8: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s).</div>
+            <div class="card">
+                <div class="question-text">1. The life in the countryside is very <u>quiet</u> and relaxing.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">A. noisy</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">B. exciting</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">C. modern</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">D. hard</button>
+                </div>
+            </div>
+
+            <!-- EXERCISE 10 -->
+            <div class="exercise-title">Exercise 10: Circle the correct options to complete the sentences.</div>
+            <div class="card">
+                <div class="question-text">1. Peter spoke English ______ than the other students, so she got the best marks.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">good</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">better</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'B')">well</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="question-text">2. Juice contains ______ vitamins than coke.</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">more</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'A')">many</button>
+                </div>
+            </div>
+
+            <!-- EXERCISE 13 -->
+            <div class="exercise-title">Exercise 13: Find and correct one mistake in each sentence.</div>
+            <div class="card">
+                <div class="question-text">1. To get <u>a</u> (A) good mark, you should <u>listen</u> (B) more <u>careful</u> (C) than you <u>have done</u> (D).</div>
+                <div class="options-grid">
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">A</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">B</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">C (Sửa: careful -> carefully)</button>
+                    <button type="button" class="btn-opt" onclick="checkABCD(this, 'C')">D</button>
+                </div>
+            </div>
+
+            <div class="submit-area">
+                <button type="button" class="btn-submit" onclick="submitAll()">🎉 NỘP BÀI TỔNG KẾT 🎉</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- HỘP THOẠI POPUP TỔNG ĐIỂM -->
+    <div class="modal-overlay" id="score-modal">
+        <div class="modal-content">
+            <div class="score-circle" id="modal-score">10/10</div>
+            <h2 style="margin-bottom:10px; color:var(--primary);">Kết Quả Của Con!</h2>
+            <p class="feedback-text" id="modal-feedback">Lời khen động viên ở đây...</p>
+            <button class="btn-close-modal" onclick="closeModal()">Làm Lại Lần Nữa 🚀</button>
+        </div>
+    </div>
+
+    <script>
+        // Web Audio API khởi tạo âm thanh không dùng link ngoài
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                // Tiếng Ding ngân vang vui tai
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+            } else {
+                // Tiếng Téo tèo tèo trầm buồn nhè nhẹ
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+                osc.frequency.setValueAtTime(147, audioCtx.currentTime + 0.15); // D3
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.5);
+            }
+        }
+
+        // Tạo hiệu ứng confetti hạt giấy màu bay phấp phới
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let confetti = [];
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function triggerConfetti() {
+            confetti = [];
+            for(let i=0; i<80; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * canvas.height,
+                    color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                    tilt: Math.random() * 10 - 5
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let alive = false;
+            confetti.forEach(p => {
+                p.y += Math.random() * 3 + 2;
+                p.tilt += Math.random() * 2 - 1;
+                if(p.y < canvas.height) alive = true;
+                ctx.beginPath();
+                ctx.lineWidth = p.r;
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt + p.r/2, p.y);
+                ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+                ctx.stroke();
+            });
+            if(alive) requestAnimationFrame(animateConfetti);
+        }
+
+        // Logic check Trắc nghiệm ABCD
+        function checkABCD(btn, correctLetter, qId) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('.btn-opt');
+            
+            // Tìm text của nút đúng dựa vào ký tự đầu
+            let correctBtn = null;
+            buttons.forEach(b => {
+                if(b.innerText.trim().startsWith(correctLetter)) {
+                    correctBtn = b;
+                }
+            });
+
+            if (btn.innerText.trim().startsWith(correctLetter)) {
+                btn.classList.add('correct');
+                playSound('correct');
+                triggerConfetti();
+            } else {
+                btn.classList.add('wrong');
+                if(correctBtn) correctBtn.classList.add('correct');
+                playSound('wrong');
+                
+                // Rung lắc thẻ card
+                const card = parent.closest('.card');
+                if(card) {
+                    card.classList.add('shake');
+                    setTimeout(() => card.classList.remove('shake'), 400);
+                }
+            }
+
+            buttons.forEach(b => b.classList.add('disabled'));
+
+            // Hiện phần giải thích chi tiết ngay lập tức
+            const exp = parent.nextElementSibling;
+            if (exp && exp.classList.contains('explanation-box')) {
+                exp.style.display = 'block';
+            }
+        }
+
+        // Popup động cho phần điền vào chỗ trống (Gap Fill)
+        function openGapPopup(span, options, correctValue) {
+            if(span.classList.contains('disabled')) return;
+            
+            let selectMenu = document.createElement('div');
+            selectMenu.style.position = 'absolute';
+            selectMenu.style.background = 'white';
+            selectMenu.style.border = '3px solid var(--primary)';
+            selectMenu.style.borderRadius = '12px';
+            selectMenu.style.padding = '8px';
+            selectMenu.style.zIndex = '100';
+            selectMenu.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            
+            options.forEach(opt => {
+                let btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.style.display = 'block';
+                btn.style.width = '100%';
+                btn.style.margin = '4px 0';
+                btn.style.padding = '6px 12px';
+                btn.style.fontWeight = 'bold';
+                btn.style.borderRadius = '8px';
+                btn.style.border = '1px solid #CCC';
+                btn.style.cursor = 'pointer';
+                
+                btn.onclick = function() {
+                    span.innerText = opt;
+                    if(opt === correctValue) {
+                        span.className = 'gap-fill answered-correct disabled';
+                        playSound('correct');
+                    } else {
+                        span.className = 'gap-fill answered-wrong disabled';
+                        playSound('wrong');
+                    }
+                    selectMenu.remove();
+                };
+                selectMenu.appendChild(btn);
+            });
+            
+            document.body.appendChild(selectMenu);
+            const rect = span.getBoundingClientRect();
+            selectMenu.style.top = `${rect.bottom + window.scrollY}px`;
+            selectMenu.style.left = `${rect.left + window.scrollX}px`;
+        }
+
+        // Logic check Nối hình ảnh (Matching)
+        function checkMatch(select, correctValue) {
+            if(select.value === correctValue) {
+                select.className = 'match-select correct';
+                playSound('correct');
+            } else {
+                select.className = 'match-select wrong';
+                playSound('wrong');
+            }
+        }
+
+        // Hàm tính điểm và nộp bài
+        function submitAll() {
+            let correctCount = document.querySelectorAll('.correct, .answered-correct').length;
+            let totalCount = 45; // Tổng số câu hỏi thực tế trong đề bài
+            let scorePercentage = (correctCount / totalCount) * 100;
+
+            document.getElementById('modal-score').innerText = `${correctCount}/${totalCount}`;
+            let feedback = "";
+
+            if(scorePercentage < 50) {
+                feedback = "Điểm lần này chưa cao lắm, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! - Ms Lê Hằng";
+            } else if(scorePercentage <= 80) {
+                feedback = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau! - Ms Lê Hằng";
+            } else {
+                feedback = "Làm tốt lắm, con cố gắng rinh điểm 10 ở lần sau nha! - Ms Lê Hằng";
+            }
+
+            document.getElementById('modal-feedback').innerText = feedback;
+            document.getElementById('score-modal').classList.add('active');
+            if(scorePercentage >= 60) triggerConfetti();
+        }
+
+        function closeModal() {
+            document.getElementById('score-modal').classList.remove('active');
+            window.location.reload(); // Tải lại trang để làm lại từ đầu
+        }
+    </script>
+</body>
+</html>
